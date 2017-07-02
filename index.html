@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Snake Game</title>
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <div id='container'>
+      <div id='canvasDiv'>
+        <canvas id='canvas' width='600' height='600'></canvas>
+      </div>
+      <div class='shadow-start'>
+        <h1><span id='snake'>Snake</span> Game</h1>
+        <h2>Previous best score was <span id='best-score'>0</span></h2>
+        <div class='rules slideleft'>
+        </div>
+        <div class='rules-slider'>
+        </div>
+        <div id='settings' class='slideleft'>
+          <h2>SETTINGS</h2>
+          <h3>Complexity</h3>
+          <select name="complexity" form="complexity">
+            <option value="1">Vegetable</option>
+            <option value="2">Disabled</option>
+            <option value="3">Noob</option>
+            <option value="4">Average</option>
+            <option value="5" selected>Hard</option>
+            <option value="6">Semi God</option>
+            <option value="7">The Lord God</option>
+          </select>
+          <h3>Game Mode</h3>
+          <select name="game-mode" form="game-mode">
+            <option value="0" selected>No Walls</option>
+            <option value="1">Borders + First Option</option>
+            <option value="2">Borders + Second Option</option>
+            <option value="3">Borders + Third Option</option>
+            <option value="4">Borders + Fourth Option</option>
+          </select>
+          <h2>RULES</h2>
+          <p>Just a common Snake game. Amount of points you'll receive depends on game complexity. Every 5-th food will give you extra points, but it will disappear after a short amount of time(depends on complexity). snake's speed grows with game complexity growth</p>
+        </div>
+        <div id='slider'>
+        </div>
+        <div id='butt'>
+        </div>
+        <a class='button' id='start'>
+          <span>START</span>
+        </a>
+      </div>
+      <div class='shadow-pause'></div>
+    </div>
+    <script type="text/javascript" src='app.js'>
+
+    </script>
+  </body>
+</html>

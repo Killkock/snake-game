@@ -1,25 +1,19 @@
 body {
   color: yellow;
   font-family: 'Raleway', sans-serif;
-  background: #A7A9AC;
-    background-image: -webkit-gradient(
-        linear,
-        left top,
-        right top,
-        color-stop(.34, rgba(230,237,241,.05)),
-        color-stop(.67, rgba(230,237,241,0)));
-    -webkit-background-size: 5px 5px;
+  background: #000000;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #434343, #000000);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #434343, #000000); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
 
 }
-
-
 
 canvas {
   border: 5px solid red;
 }
 
 #container {
-  margin: 50px auto;
+  margin: 20px auto;
   width: 610px;
 }
 
@@ -202,7 +196,7 @@ h2, h3 {
   height: 0;
   border-top: 40px solid transparent;
   border-bottom: 40px solid transparent;
-  border-left: 40px solid black;
+  border-left: 40px solid yellow;
 
   -webkit-transition: all  0.5s ease-in-out;
   -moz-transition: all  0.5s ease-in-out;

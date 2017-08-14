@@ -2,8 +2,6 @@ var canvas = document.getElementById('canvas');
 var canvasContext = canvas.getContext('2d');
 var container = document.getElementById('container');
 var startButton = document.getElementById('start');
-var rules = document.querySelector('.rules');
-var rulesSlider = document.querySelector('.rules-slider');
 var slider = document.getElementById('slider');
 var slide = document.getElementById('settings');
 var shadow = document.querySelector('.shadow-start');
@@ -24,7 +22,6 @@ var gameInterval;
 var meal;
 var amountOfMealTaken = 0;
 var amountOfSuperFoodCreated = 0;
-// var wasSuperFoodTaken = false;
 var isSuperFoodOnTheCanvas = false;
 var axis = 'X';
 var previousDirection = 'Right';
@@ -167,18 +164,6 @@ slider.addEventListener('click', function() {
   }
 });
 
-rulesSlider.addEventListener('click', function() {
-  if (rules.classList.contains('slideright')) {
-    rules.classList.remove('slideright');
-    rules.classList.add('slideleft');
-    this.style.left = 0 + 'px';
-  } else {
-    rules.classList.remove('slideleft');
-    rules.classList.add('slideright');
-    this.style.left = 0 - slider.offsetWidth + 'px';
-  }
-});
-
 complexitySelector.addEventListener('change', function(e) {
   gameComplexity = +this.value;
 })
@@ -215,7 +200,7 @@ function drawAll() {
     canvasContext.font = 'bold 40px sans-serif'
     canvasContext.fillStyle = 'rgba(0, 0, 0, 0.2)';
     canvasContext.fillText(currentScore, 20, 50);
-    canvasContext.fillText('press R to restart', 100, 550)
+    canvasContext.fillText('press R to restart', 150, 550)
   }
 
   function drawFood() {
@@ -243,6 +228,8 @@ function drawAll() {
 }
 
 function moveAll() {
+  // function moves the whole snale's body
+
   x = snakeBody[0].x;
   y = snakeBody[0].y;
 
@@ -260,6 +247,12 @@ function moveAll() {
 }
 
 function createMeal() {
+  // function create food and place it in the random free space of the canvas
+  // (free means without snake's body or wall). Every 5 meal is super meal which
+  // gives to player extra points. If super isn't taken after a few second
+  // (precise amount of time depends on game complexity) it will be replaced with
+  // a common food.
+
   var yCoefficient = canvas.height / snakeSize;
   var xCoefficient = canvas.width / snakeSize;
   var x = Math.floor(Math.random() * xCoefficient) * snakeSize;
@@ -279,6 +272,7 @@ function createMeal() {
   }
 
   if (amountOfMealTaken % 4 === 0 && !(amountOfMealTaken / 4 === amountOfSuperFoodCreated)) {
+
     amountOfSuperFoodCreated++;
     isSuperFoodOnTheCanvas = true;
 
@@ -350,6 +344,8 @@ function checkingForBorderCrossing() {
 }
 
 function checkingForWallCollision() {
+  // game ends when the snake's head collides with a wall
+
   var x = snakeBody[0].x;
   var y = snakeBody[0].y;
 
@@ -362,6 +358,8 @@ function checkingForWallCollision() {
 }
 
 function checkingForSelfCollision() {
+  // game ends when the snake's head collides with its body.
+
   var x = snakeBody[0].x;
   var y = snakeBody[0].y;
 
@@ -397,12 +395,10 @@ function handleArrowKeys(e) {
     axis = 'X';
   }
   suggestedDirection = dir;
-
 }
 
 function handleSpaceKey(e) {
   if (e.code === 'Space' && !isEnded) {
-    console.log(suggestedDirection, previousDirection);
     if (isGoing) {
       isGoing = false;
       clearInterval(gameInterval);
@@ -427,6 +423,9 @@ function roundToTwenty(num) {
 }
 
 function showHideShadow(shadow) {
+  // function stops the game, and shows the div which overlaps the game canvas and
+  // has some level of opacity
+
   clearInterval(gameInterval);
   isGoing = false;
 
@@ -465,11 +464,7 @@ function normalizeDivs() {
   startButton.style.top = canvas.offsetHeight / 3 * 2 + 'px';
   slide.style.left = canvas.offsetWidth + 'px';
   slide.style.height = canvas.offsetHeight + 'px';
-  console.log(slide.style)
-  console.log('sdsdssd')
 }
-
-
 
 function clearGame() {
   amountOfMealTaken = 0;

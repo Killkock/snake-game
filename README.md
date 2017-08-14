@@ -1,3 +1,3 @@
 # snake-game
 
-You can find working app here: https://codepen.io/killkock/full/EXPdrR/
+You can find working app here: https://killkock.github.io/snakegame/
